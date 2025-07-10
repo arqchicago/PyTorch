@@ -34,9 +34,11 @@ def load_data(file_path):
     try:
         data_df = pd.read_csv(file_path)
         rows, cols = data_df.shape
-
         return format_response(200, f"Successfully read {file_path}  rows={rows}, cols={cols}", data=data_df)
-
+    except FileNotFoundError:
+        return format_response(404, f"File not found: {file_path}")
+    except UnicodeDecodeError as e:
+        return format_response(422, f"Decoding error while reading the file: {e}")
     except Exception as e:
         return format_response(500, f"data loader failed: {e}")
     
