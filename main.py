@@ -21,6 +21,7 @@ if __name__ == "__main__":
 
         rows, cols = X.shape
         print(f"     - rows={rows}, cols={cols}")
+        print(f"     - columns are ={X.columns.tolist()}")
 
     else:
         print("Data loader failed.")
